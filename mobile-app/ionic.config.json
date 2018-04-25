@@ -1,0 +1,8 @@
+{
+  "name": "keyr-code",
+  "app_id": "57db4331",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

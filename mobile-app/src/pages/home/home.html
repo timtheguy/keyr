@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      KeyR Code User Application
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>1. Enroll in the application</p>
+  <ion-note>This will generate your key pair and share it with the organization.</ion-note>
+  <br>
+  <form (ngSubmit)="enrollUser()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="userName" name="userName"></ion-input>
+    </ion-item>
+    <button ion-button color="primary" type="submit" block>Enroll User</button>
+  </form>
+
+  <div *ngIf="isEnrolled">
+    <div *ngIf="userPrivate">
+      <button (click)="showMessage('Private Key', userPrivate)" ion-button small>Show private key</button>
+      <button (click)="showMessage('Public Key', userPublic)" ion-button small>Show public key</button>
+    </div>
+    <br>
+    <p>2. Scan a barcode</p>
+    <ion-note>Scan the barcode to automatically retrieve the message from the listed location and decrypt it.</ion-note>
+    <br><br>
+    <button ion-button color="dark" block (click)="scan()">Start Scan</button>
+  </div>
+
+</ion-content>
