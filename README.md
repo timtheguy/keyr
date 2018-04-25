@@ -4,6 +4,21 @@ KeyR code is an implementation of QR code technology that allows the user to dec
 ## Overview
 This repository contains the source for a server and mobile application pair designed to demonstrate the implementation of public key cryptography primitives in securing the contents of a QR-encoded barcode.
 
+#### Source Layout
+[_`mobile-app`_](https://github.com/timtheguy/keyr/tree/master/mobile-app) - contains the Ionic source for the mobile application
+* _`/src`_ - contains the Typescript source code for the application's components
+  * _`/src/pages/Home`_ - the files associated with the Home page of the application
+    * _`home.html`_ - handles what the page looks like 
+    * _`home.ts`_ - handles what data and information is contained in the application
+
+[_`web-app`_](https://github.com/timtheguy/keyr/tree/master/web-app) - contains the source for the web application
+* _`/src/app`_ - contains the source for the front end of the application
+  * _`/src/app/app.component.ts`_ - where we interface with application services
+  * _`/src/app/data.service.ts`_ - service where we handle exchange with the server
+  * _`/src/app/secure.service.ts`_ - service where we process cryptographic functions
+* _`/server/routes`_ - contains the source for the backend server operations
+  * _`/server/routes/api.js`_ - the API endpoints and interfaces to the server
+
 ### How It Works
 1. The user enrolls in the mobile application, locally generating a PGP public and private key pair.
 2. The public key of the user is exchanged with the public key of the organization.
