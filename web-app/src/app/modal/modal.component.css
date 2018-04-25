@@ -1,0 +1,12 @@
+.modal {
+    background: rgba(0,0,0,0.6);
+  }
+
+.modal-dialog{
+    margin-top: 200px;
+}
+
+.modal-content{
+    overflow-y: scroll;
+    height: 500px;
+}

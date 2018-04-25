@@ -1,0 +1,69 @@
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">
+    <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> KeyR Code Manager: Organization
+  </a>
+</nav>
+<main role="main" class="container">
+  <div class="starter-template">
+    <div *ngIf="organization">
+      <h2>{{ organization.name }}</h2>
+      <button type="button" (click)="refreshUserList()" class="btn btn-primary">Refresh Users</button>
+      <button type="button" (click)="modal.show(organization)" class="btn btn-success">Show Keys</button>
+      <app-modal #modal>
+        <div class="app-modal-header">
+          Organization Keys
+        </div>
+        <div class="app-modal-body">
+          <b>{{organization.name}}</b>
+          <hr>
+          <p>Public key</p>
+          <pre>{{organization.keys.public}}</pre>
+          <p>Private key</p>
+          <pre>{{organization.keys.private}}</pre>
+        </div>
+        <div class="app-modal-footer">
+          <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
+        </div>
+      </app-modal>
+      <br>
+    </div>
+    <div *ngIf="!organization">
+      No organization defined in database.
+    </div>
+    <hr>
+    <p class="lead"></p>
+  </div>
+</main>
+<div class="container">
+  <h4>Generate QR with message for User:</h4>
+  <form #messageForm="ngForm" (ngSubmit)="generateQR(messageForm.form);">
+    <div class="form-group">
+      <label>User</label>
+      <select class="form-control" name="user" ngModel #userField="ngModel" required>
+        <option *ngFor="let user of users" [ngValue]="user">
+          {{ user.id }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <input type="text" class="form-control" name="message" ngModel #nameField="ngModel">
+    </div>
+    <button class="btn btn-primary" [disabled]="!messageForm.valid">Submit</button>
+  </form>
+
+  <div *ngIf="qrCode">
+    <hr>
+    <h4>Generated QR:</h4>
+    <img src="{{ qrCode }}" />
+    <div *ngIf="urlText">
+      <a target="_blank" href="{{urlText}}">{{urlText}}</a>
+    </div>
+    <hr>
+  </div>
+  <hr>
+  <!-- <h3>Enroll a user (Experimental)</h3>
+  <p>You can enroll users as if they were enrolling from the app here.</p>
+  <button type="button" (click)="enrollUser()" class="btn btn-primary">Enroll User</button> -->
+</div>
